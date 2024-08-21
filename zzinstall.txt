@@ -1,0 +1,6 @@
+--frontend
+npm create vite@latest
+npm i
+
+--backend
+npm i express dotenv cookie-parser bcryptjs mongoose socket.io jsonwebtoken
