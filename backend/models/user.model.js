@@ -3,17 +3,20 @@ import mongoose from 'mongoose'
 const userSchema = new mongoose.Schema({
     fullName: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        trim: true
     },
     password: {
         type: String,
         require: true,
-        minlength: 6
+        minlength: 6,
+        trim: true
     },
     gender: {
         type: String,
