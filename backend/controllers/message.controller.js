@@ -2,13 +2,13 @@ import conversationModel from "../models/conversation.model.js"
 import messageModel from "../models/message.model.js"
 
 const sendMessage = async(req, res) => {
-    try{
+    try {
         const {message} = req.body;
         const {id: receiverId} = req.params;
         const senderId = req.user._id;
 
         if (senderId == receiverId) {
-            return res.status(401).json( { error: "no self messages" } )
+            return res.status(401).json( { error: "no self messages" } );
         }
 
         let conversation = await conversationModel.findOne({
@@ -37,19 +37,19 @@ const sendMessage = async(req, res) => {
 
         res.status(201).json( newMessage );
     }
-    catch(err){
+    catch(err) {
         console.log("Error in sending message", err.message);
         res.status(500).json( { error: "internal server error" } );
     }
 }
 
 const getMessages = async(req, res) => {
-    try{
+    try {
         const {id:receiverId} = req.params;
         const senderId = req.user._id;
 
         if (senderId == receiverId) {
-            return res.status(401).json( { error: "no self messages" } )
+            return res.status(401).json( { error: "no self messages" } );
         }
 
         const conversation = await conversationModel.findOne({
@@ -62,7 +62,7 @@ const getMessages = async(req, res) => {
 
         res.status(200).json(conversation.messages);
     }
-    catch(err){
+    catch(err) {
         console.log("Error in sending message", err.message);
         res.status(500).json( { error: "internal server error" } );
     }

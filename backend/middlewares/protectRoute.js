@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import userModel from "../models/user.model.js"
 
 const protectRoute = async(req, res, next) => {
-    try{
+    try {
         const token = req.cookies.jwt;
 
         if (!token) {
@@ -18,14 +18,14 @@ const protectRoute = async(req, res, next) => {
         const user = await userModel.findById(decoded.userId).select("-password");
 
         if (!user) {
-            return res.status(404).json( { error: "user not found" } )
+            return res.status(404).json( { error: "user not found" } );
         }
 
         req.user = user;
 
         next();
     }
-    catch(err){
+    catch(err) {
         console.log("Error in protectRoute auth check", err.message);
         res.status(500).json( { error: "internal server error" } );
     }

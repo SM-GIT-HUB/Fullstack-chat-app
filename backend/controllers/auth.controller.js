@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs/dist/bcrypt.js"
 import generateToken from "../utils/generateToken.js";
 
 async function signup(req, res) {
-    try{
+    try {
         const {fullName, username, password, confirmPassword, gender} = req.body;
 
         if (password !== confirmPassword) {
@@ -38,15 +38,15 @@ async function signup(req, res) {
         else
             res.status(400).json( { error: "Invalid user data" } );
     }
-    catch(err){
+    catch(err) {
         console.log("Error in signup", err.message);
-        res.status(500).json( { error: "Internal server error" } )
+        res.status(500).json( { error: "Internal server error" } );
     }
 }
 
 
 async function login(req, res) {
-    try{
+    try {
         const {username, password} = req.body;
 
         const user = await userModel.findOne({username});
@@ -60,21 +60,21 @@ async function login(req, res) {
 
         res.status(201).json( { id: user._id, fullName: user.fullName, username: user.username, dp: user.dp } );
     }
-    catch(err){
+    catch(err) {
         console.log("Error in login", err.message);
-        res.status(500).json( { error: "Internal server error" } )
+        res.status(500).json( { error: "Internal server error" } );
     }
 }
 
 
 function logout(req, res) {
-    try{
+    try {
         res.cookie("jwt", "", {maxAge: 0});
         res.status(200).json({message: "logged out successfully"});
     }
-    catch(err){
+    catch(err) {
         console.log("Error in logout", err.message);
-        res.status(500).json( { error: "Internal server error" } )
+        res.status(500).json( { error: "Internal server error" } );
     }
 }
 
