@@ -53,7 +53,7 @@ async function login(req, res) {
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
         if (!user || !isPasswordCorrect) {
-            return res.status(400).json({error: "invalid username / password"});
+            return res.status(400).json({error: "Invalid username or password"});
         }
 
         generateToken(user._id, res);
@@ -70,7 +70,7 @@ async function login(req, res) {
 function logout(req, res) {
     try {
         res.cookie("jwt", "", {maxAge: 0});
-        res.status(200).json({message: "logged out successfully"});
+        res.status(200).json( { message: "Logged out successfully" } );
     }
     catch(err) {
         console.log("Error in logout", err.message);

@@ -2,5 +2,17 @@
 npm create vite@latest
 npm i
 
+npm install -D tailwindcss postcss autoprefixer
+>> npx tailwindcss init -p
+
+npm i react-icons --save
+npm i -D daisyui@latest
+
+npm i react-router-dom axios
+
+npm i react-hot-toast
+
+
+
 --backend
 npm i express dotenv cookie-parser bcryptjs mongoose socket.io jsonwebtoken
