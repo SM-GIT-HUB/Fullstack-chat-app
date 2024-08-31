@@ -8,7 +8,7 @@ const sendMessage = async(req, res) => {
         const senderId = req.user._id;
 
         if (senderId == receiverId) {
-            return res.status(401).json( { error: "no self messages" } );
+            return res.status(401).json( { error: "No self messages" } );
         }
 
         let conversation = await conversationModel.findOne({
@@ -39,7 +39,7 @@ const sendMessage = async(req, res) => {
     }
     catch(err) {
         console.log("Error in sending message", err.message);
-        res.status(500).json( { error: "internal server error" } );
+        res.status(500).json( { error: "Internal server error" } );
     }
 }
 

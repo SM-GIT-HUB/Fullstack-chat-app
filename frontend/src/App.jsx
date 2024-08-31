@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import viteLogo from '/vite.svg'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
@@ -8,22 +8,53 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import ErrorPage from './ErrorPage'
 import { useAuthContext } from '../context/AuthContext'
+import axios from 'axios'
 // import Toaster from 'react-hot-toast'
 
 function App() {
 
   const {authUser} = useAuthContext();
+  const [server, setServer] = useState(false);
+
+  console.log(server);
+
+  async function checkServer()
+  {
+    try {
+      const response = await axios.get('/api/check');
+      console.log(response);
+      const data = response.data;
+
+      console.log(data);
+
+      if (data.success == true) {
+        setServer(true);
+      }
+    }
+    catch {
+      setServer(false);
+    }
+  }
+
+  useEffect(() => {
+    checkServer();
+  }, [])
 
   return (
     <>
       <div className='p-4 h-screen flex items-center justify-center'>
-        <Routes>
-          <Route path='/' element={authUser? <Home/> : <Navigate to={'/login'}/>} />
-          <Route path='/login' element={authUser? <Navigate to={'/'}/> : <Login/>} />
-          <Route path='/signup' element={authUser? <Navigate to={'/'}/> : <Signup/>} />
-          <Route path='/:any' element={<ErrorPage/>}/>
-
-        </Routes>
+        {
+          server?
+          <Routes>
+            <Route path='/' element={authUser? <Home/> : <Navigate to={'/login'}/>} />
+            <Route path='/login' element={authUser? <Navigate to={'/'}/> : <Login/>} />
+            <Route path='/signup' element={authUser? <Navigate to={'/'}/> : <Signup/>} />
+            <Route path='/:any' element={<ErrorPage/>}/>
+          </Routes> :
+          <Routes>
+            <Route path='/' element={<ErrorPage/>}/>
+          </Routes>
+        }
 
         <Toaster/>
         

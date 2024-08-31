@@ -33,7 +33,7 @@ async function signup(req, res) {
 
         if (newUser) {
             generateToken(newUser._id, res);
-            res.status(201).json( { id: newUser._id, fullName, username, dp: newUser.dp } );
+            res.status(201).json( { _id: newUser._id, fullName, username, dp: newUser.dp } );
         }
         else
             res.status(400).json( { error: "Invalid user data" } );
@@ -58,7 +58,7 @@ async function login(req, res) {
 
         generateToken(user._id, res);
 
-        res.status(201).json( { id: user._id, fullName: user.fullName, username: user.username, dp: user.dp } );
+        res.status(201).json( { _id: user._id, fullName: user.fullName, username: user.username, dp: user.dp } );
     }
     catch(err) {
         console.log("Error in login", err.message);

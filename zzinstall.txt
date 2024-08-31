@@ -12,6 +12,8 @@ npm i react-router-dom axios
 
 npm i react-hot-toast
 
+npm i zustand
+
 
 
 --backend
