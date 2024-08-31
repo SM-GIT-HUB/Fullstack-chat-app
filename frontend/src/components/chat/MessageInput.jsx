@@ -1,10 +1,16 @@
 import {BsSend} from "react-icons/bs"
 import useSendMessage from "../../hooks/useSendMessage"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useChat from "../../zustand/useChat";
 
 function MessageInput() {
   const [message, setMessage] = useState("");
   const [loading, sendMessage] = useSendMessage();
+  const {selectedContact} = useChat();
+
+  useEffect(() => {
+    setMessage("");
+  }, [selectedContact])
 
   async function handleSubmit(e)
   {

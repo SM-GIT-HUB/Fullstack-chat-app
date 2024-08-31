@@ -7,8 +7,8 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 
 import dbConnect from "./db/dbConnect.js"
+import { app, server } from "./socket/socket.js"
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -25,7 +25,7 @@ app.get('/api/check', (req, res) => {
 
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     dbConnect();
     console.log(`server running on port: ${PORT}`);
 })

@@ -22,7 +22,6 @@ function App() {
   {
     try {
       const response = await axios.get('/api/check');
-      console.log(response);
       const data = response.data;
 
       console.log(data);

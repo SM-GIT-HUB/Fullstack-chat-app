@@ -14,6 +14,7 @@ function Message({message}) {
     hour: '2-digit',
     minute: '2-digit'
   });
+  const shakeClass = message.shouldShake? "shake" : "";
 
   return (
     <>
@@ -24,7 +25,7 @@ function Message({message}) {
             </div>
         </div>
 
-        <div className={`chat-bubble text-white ${bubbleColor}`}>{message.message}</div>
+        <div className={`chat-bubble text-white ${bubbleColor} ${shakeClass}`}>{message.message}</div>
 
         <div className="chat-footer opacity-50 text-xs flex gap-1 items-center text-gray-100">{time}</div>
     </div>

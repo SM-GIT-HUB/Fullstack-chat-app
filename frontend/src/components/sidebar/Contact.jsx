@@ -1,18 +1,21 @@
 /* eslint-disable react/prop-types */
 
+import { useSocketContext } from "../../../context/SocketContext"
 import useChat from "../../zustand/useChat"
 
 function Contact({contact, emoji, lastIndex}) {
     const {selectedContact, setSelectedContact} = useChat();
 
     const isSelected = selectedContact?._id == contact._id;
+    const {onlineUsers} = useSocketContext();
+    const status = onlineUsers.includes(contact._id)? "online" : "offline";
 
     return (
         <>
             <div className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer
                 ${isSelected && "bg-sky-500"}
                 `} onClick={() => setSelectedContact(contact)}>
-                <div className="avatar online">
+                <div className={`avatar ${status}`}>
                     <div className="w-12 rounded-full">
                         <img src={contact.dp} alt="" />
                     </div>

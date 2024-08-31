@@ -14,6 +14,8 @@ npm i react-hot-toast
 
 npm i zustand
 
+npm i socket.io-client
+
 
 
 --backend
