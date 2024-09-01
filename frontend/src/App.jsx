@@ -24,7 +24,6 @@ function App() {
       const response = await axios.get('/api/check');
       const data = response.data;
 
-      console.log(data);
 
       if (data.success == true) {
         setServer(true);
@@ -51,7 +50,8 @@ function App() {
             <Route path='/:any' element={<ErrorPage/>}/>
           </Routes> :
           <Routes>
-            <Route path='/' element={<ErrorPage/>}/>
+            <Route path='/' element={<span className='loading loading-spinner'></span>}/>
+            <Route path='/:any' element={<span className='loading loading-spinner'></span>}/>
           </Routes>
         }
 

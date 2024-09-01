@@ -38,7 +38,7 @@ function SearchInput() {
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        <input type="text" placeholder="Search.." className="input input-primary input-bordered rounded-full"
+        <input type="text" placeholder="Search.." className="input input-primary input-bordered rounded-full w-full sm:w-auto"
         value={search} onChange={(e) => {setSearch(e.target.value)}}
         />
         <button type="submit" className="btn btn-circle bg-sky-500 text-white">

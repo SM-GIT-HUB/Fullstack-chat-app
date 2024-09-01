@@ -28,7 +28,7 @@ function ChatContainer() {
     const noChatSelected = selectedContact == null;
 
     return (
-        <div className="md:min-w-[450px] flex flex-col">
+        <div className="h-[55%] w-full sm:h-auto sm:w-auto sm:max-w-[600px] md:min-w-[450px] flex flex-col">
             {
                 noChatSelected? <NoChatSelected/> :
                 <>

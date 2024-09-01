@@ -25,7 +25,7 @@ function Message({message}) {
             </div>
         </div>
 
-        <div className={`chat-bubble text-white ${bubbleColor} ${shakeClass}`}>{message.message}</div>
+        <div className={`chat-bubble text-white ${bubbleColor} ${shakeClass} whitespace-pre-line break-words`}>{message.message}</div>
 
         <div className="chat-footer opacity-50 text-xs flex gap-1 items-center text-gray-100">{time}</div>
     </div>
