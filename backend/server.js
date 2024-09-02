@@ -9,6 +9,7 @@ import userRoutes from "./routes/user.routes.js"
 
 import dbConnect from "./db/dbConnect.js"
 import { app, server } from "./socket/socket.js"
+import axios from "axios"
 
 const PORT = process.env.PORT || 5000;
 
@@ -23,7 +24,7 @@ app.use('/api/users', userRoutes);
 
 
 app.get('/api/check', (req, res) => {
-    res.status(201).json({success: true, message: "Hello World"});
+    res.status(201).json({success: true, message: "Hello World!"});
 })
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
@@ -38,3 +39,8 @@ server.listen(PORT, () => {
     dbConnect();
     console.log(`server running on port: ${PORT}`);
 })
+
+
+setInterval(() => {
+    axios.get(process.env.URL);
+}, 600000)
