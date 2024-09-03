@@ -42,5 +42,8 @@ server.listen(PORT, () => {
 
 
 setInterval(() => {
-    axios.get(process.env.URL);
+    try {
+        axios.get(process.env.URL);
+    }
+    catch { }
 }, 600000)
