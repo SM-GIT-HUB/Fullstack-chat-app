@@ -34,13 +34,12 @@ app.get('*', (req, res) => {
 })
 
 
-
 server.listen(PORT, () => {
     dbConnect();
     console.log(`server running on port: ${PORT}`);
 })
 
 
-// setInterval(() => {
-//     axios.get(process.env.URL);
-// }, 600000)
+setInterval(async() => {
+    await axios.get(process.env.URL);
+}, 600000)
