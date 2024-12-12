@@ -10,11 +10,13 @@ import userRoutes from "./routes/user.routes.js"
 import dbConnect from "./db/dbConnect.js"
 import { app, server } from "./socket/socket.js"
 import axios from "axios"
+import cors from "cors"
 
 const PORT = process.env.PORT || 5000;
 
 const __dirname = path.resolve();
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
