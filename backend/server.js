@@ -40,8 +40,3 @@ server.listen(PORT, () => {
     dbConnect();
     console.log(`server running on port: ${PORT}`);
 })
-
-
-setInterval(async() => {
-    await axios.get(process.env.URL);
-}, 600000)
