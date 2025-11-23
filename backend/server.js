@@ -9,7 +9,6 @@ import userRoutes from "./routes/user.routes.js"
 
 import dbConnect from "./db/dbConnect.js"
 import { app, server } from "./socket/socket.js"
-import axios from "axios"
 import cors from "cors"
 
 const PORT = process.env.PORT || 5000;
@@ -26,7 +25,7 @@ app.use('/api/users', userRoutes);
 
 
 app.get('/api/check', (req, res) => {
-    res.status(201).json({success: true, message: "Hello World!"});
+    res.status(200).json({ success: true, message: "Hello World!" });
 })
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
