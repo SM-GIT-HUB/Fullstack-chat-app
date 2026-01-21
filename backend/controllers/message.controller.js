@@ -37,11 +37,11 @@ const sendMessage = async(req, res) => {
 
         //SOCKET IO HERE
         const receiverSocketId = getReceiverSocketId(receiverId);
+
         if (receiverSocketId) {
             //io.to().emit() USED TO SEND EVENTS TO SPECIFIC CLIENT
             io.to(receiverSocketId).emit("newMessage", {newMessage, senderId, receiverId});
         }
-
 
         res.status(201).json( newMessage );
     }
@@ -61,7 +61,7 @@ const getMessages = async(req, res) => {
         }
 
         const conversation = await conversationModel.findOne({
-            participants: {$all: [senderId, receiverId]}
+            participants: { $all: [senderId, receiverId] }
         }).populate("messages") // ACTUAL MESSAGES
 
         if (!conversation) {

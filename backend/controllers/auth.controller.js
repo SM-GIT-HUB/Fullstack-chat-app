@@ -20,15 +20,14 @@ async function signup(req, res) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const boyDp = `https://avatar.iran.liara.run/public/boy?username=${username}`; //API PROVIDED BY- https://avatar-placeholder.iran.liara.run/document
-        const girlDp = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+        const dp = `https://robohash.org/${username}`;
 
         const newUser = await userModel.create({
             fullName,
             username,
             password: hashedPassword,
             gender,
-            dp: gender == "male"? boyDp : girlDp
+            dp
         })
 
         if (newUser) {
@@ -77,7 +76,5 @@ function logout(req, res) {
         res.status(500).json( { error: "Internal server error" } );
     }
 }
-
-
 
 export {signup, login, logout}

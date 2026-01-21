@@ -10,13 +10,11 @@ const io = new Server(server, {
         origin: ["https://lets-chat-fjae.onrender.com", "https://tictactoe-o.netlify.app"],
         methods: ["GET", "POST"]
     }
-});
-
+})
 
 export const getReceiverSocketId = (receiverId) => {
     return userSocketMap[receiverId];
 }
-
 
 const userSocketMap = {}; //{userId: socketId}
 

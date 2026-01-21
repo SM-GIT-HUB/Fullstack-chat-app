@@ -24,7 +24,6 @@ function App() {
       const response = await axios.get('/api/check');
       const data = response.data;
 
-
       if (data.success == true) {
         setServer(true);
       }

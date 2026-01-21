@@ -9,6 +9,7 @@ function useGetContacts() {
     async function getContacts()
     {
         setLoading(true);
+        
         try {
             const response = await axios.get('/api/users');
             const data = response.data;

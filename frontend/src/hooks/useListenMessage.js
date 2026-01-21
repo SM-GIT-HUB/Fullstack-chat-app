@@ -11,14 +11,14 @@ function useListenMessage() {
 
   useEffect(() => {
     socket?.on("newMessage", (data) => {
-        const {newMessage, senderId, receiverId} = data;
+      const {newMessage, senderId, receiverId} = data;
 
-        if (authUser._id == receiverId && senderId == selectedContact._id) {
-            newMessage.shouldShake = true;
-            const sound = new Audio(notificationSound);
-            sound.play();
-            setMessages([...messages, newMessage]);
-        }
+      if (authUser._id == receiverId && senderId == selectedContact._id) {
+        newMessage.shouldShake = true;
+        const sound = new Audio(notificationSound);
+        sound.play();
+        setMessages([...messages, newMessage]);
+      }
     })
 
     return () => socket?.off("newMessage");
